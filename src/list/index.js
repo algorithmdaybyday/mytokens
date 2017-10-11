@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Table } from 'antd';
 
 const dataSource = [{
@@ -44,4 +45,4 @@ class TokensList extends Component {
     }
 };
 
-export default TokensList;
+export default connect(null, null)(TokensList);
