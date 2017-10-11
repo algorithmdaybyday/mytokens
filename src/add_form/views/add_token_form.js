@@ -32,7 +32,7 @@ class AddTokenForm extends Component {
                             <Item>
                                 {
                                     getFieldDecorator('name', {
-                                        rules: [{ required: true, message: '请输入代币名称' }],
+                                        rules: [{ required: false, message: '请输入代币名称' }],
                                     })(
                                         <Input size="large" prefix={<Icon type="flag" style={{ fontSize: 13 }} />} placeholder="代币名称" />
                                     )
@@ -43,7 +43,7 @@ class AddTokenForm extends Component {
                             <Item>
                                 {
                                     getFieldDecorator('count', {
-                                        rules: [{required: true, message: '请输入持币数量'}]
+                                        rules: [{required: false, message: '请输入持币数量'}]
                                     })(
                                         <Input size="large" prefix={<Icon type="rocket" style={{fontSize: 13 }} />} placeholder="代币数量" />
                                     )

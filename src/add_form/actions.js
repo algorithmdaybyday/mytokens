@@ -44,7 +44,7 @@ export const fetchToken = (tokenName, count) => {
             response.json().then((responseJson) => {
                 dispatch(fetchTokenSuccess(responseJson.data[0], count));
             }).catch((error) => {
-                throw new Error('Invalid json response:' + error);
+                // throw new Error('Invalid json response:' + error);
             });
         }).catch((error) => {
             dispatch(fetchTokenFailure(error));
