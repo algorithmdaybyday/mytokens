@@ -28,7 +28,7 @@ class AddTokenForm extends Component {
             <div className='addForm'>
                 <Form layout='vertical' onSubmit={this.handleSubmit}>
                     <Row gutter={40}>
-                        <Col span={10}>
+                        <Col md={10} sm={12}>
                             <Item>
                                 {
                                     getFieldDecorator('name', {
@@ -39,7 +39,7 @@ class AddTokenForm extends Component {
                                 }
                             </Item>
                         </Col>
-                        <Col span={10}>
+                        <Col md={10} sm={12}>
                             <Item>
                                 {
                                     getFieldDecorator('count', {
