@@ -38,7 +38,7 @@ class TokensList extends Component {
     render() {
         return (
             <div className='tokenList'>
-                <Table dataSource={dataSource} columns={columns} />
+                <Table dataSource={dataSource} columns={columns} pagination={false} />
             </div>
         )
     }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Input, Button, Icon } from 'antd';
+import { Form, Input, Button, Icon, Row, Col } from 'antd';
 
 const Item = Form.Item;
 
@@ -23,16 +23,21 @@ class AddForm extends Component {
         const { getFieldDecorator, getFieldsError, getFieldError, isFieldTouched } = this.props.form;
 
         return (
-            <div>
-                <Form layout='inline' onSubmit={this.handleSubmit}>
+            <div className='addForm'>
+                <Form layout='vertical' onSubmit={this.handleSubmit}>
+                    <Row gutter={40}>
+                    <Col span={10}>
                     <Item>
-                        {getFieldDecorator('name', {
-                            rules: [{ required: true, message: '请输入代币名称' }],
-                        })(
-                            <Input size="large" prefix={<Icon type="flag" style={{ fontSize: 13 }} />} placeholder="代币名称" />
-                        )}
+                        {
+                            getFieldDecorator('name', {
+                                rules: [{ required: true, message: '请输入代币名称' }],
+                            })(
+                                <Input size="large" prefix={<Icon type="flag" style={{ fontSize: 13 }} />} placeholder="代币名称" />
+                            )
+                        }
                     </Item>
-
+                    </Col>
+                    <Col span={10}>
                     <Item>
                         {
                             getFieldDecorator('count', {
@@ -42,10 +47,15 @@ class AddForm extends Component {
                             )
                         }
                     </Item>
+                    </Col>
+                    <Col span={4}>
                     <Item>
                         <Button type='primary' htmlType="submit">提交</Button>
                     </Item>
+                    </Col>
+                    </Row>
                 </Form>
+
             </div>
         )
     }
