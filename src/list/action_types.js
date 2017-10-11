@@ -1,0 +1,1 @@
+export const REMOVE_TOKEN = 'remove_token';

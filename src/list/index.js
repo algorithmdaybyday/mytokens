@@ -2,24 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Table } from 'antd';
 import {fetchToken} from "../add_form/actions";
+import {removeToken} from "./actions";
 
-const columns = [{
-    title: '代币名称',
-    dataIndex: 'name',
-    key: 'name',
-}, {
-    title: '代币价格',
-    dataIndex: 'price',
-    key: 'price',
-}, {
-    title: '代币数量',
-    dataIndex: 'count',
-    key: 'count',
-}, {
-    title: '代币价值',
-    dataIndex: 'totalPrice',
-    key: 'totalPrice',
-}];
+const { Column } = Table;
 
 class TokensList extends Component {
 
@@ -42,12 +27,31 @@ class TokensList extends Component {
         clearInterval(this.timer);
     }
 
+    onClick(e) {
+        e.preventDefault();
+        this.props.onDelete(e.target.dataset.name);
+    }
+
     render() {
         const { dataSource } = this.props;
 
         return (
             <div className='tokenList'>
-                <Table dataSource={dataSource} columns={columns} pagination={false} />
+                <Table dataSource={dataSource} pagination={false}>
+                    <Column title='代币名称' dataIndex='name' key='name' />
+                    <Column title='代币价格' dataIndex='price' key='price' />
+                    <Column title='代币数量' dataIndex='count' key='count' />
+                    <Column title='代币价值' dataIndex='totalPrice' key='totalPrice' />
+                    <Column
+                        title='操作'
+                        key='action'
+                        render={(text, record) => (
+                            <span>
+                                <a href="#" onClick={this.onClick.bind(this)} data-name={record.name}>删除</a>
+                            </span>
+                        )}
+                    />
+                </Table>
             </div>
         )
     }
@@ -63,6 +67,9 @@ const mapStateToDispatch = (dispatch) => {
     return {
         onTick: (name, count) => {
             dispatch(fetchToken(name, count));
+        },
+        onDelete: (name) => {
+            dispatch(removeToken(name));
         }
     }
 }
