@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Table } from 'antd';
-import {fetchToken} from "../add_form/actions";
-import {removeToken} from "./actions";
+import { fetchToken } from "../add_form/actions";
+import { removeToken, changePrice } from "./actions";
+
+import EditableCell from './editable_cell';
+
 
 const { Column } = Table;
 
@@ -20,7 +23,7 @@ class TokensList extends Component {
         clearInterval(this.timer);
         this.timer = setInterval(() => {
             this.tick();
-        }, 60000);
+        }, 30000);
     }
 
     componentWillUnmount() {
@@ -32,6 +35,13 @@ class TokensList extends Component {
         this.props.onDelete(e.target.dataset.name);
     }
 
+    onCellChange = (key, dataIndex) => {
+        const onCellChange = this.props.onCellChange;
+        return (value) => {
+            onCellChange(key, value);
+        }
+    }
+
     render() {
         const { dataSource } = this.props;
 
@@ -39,7 +49,17 @@ class TokensList extends Component {
             <div className='tokenList'>
                 <Table dataSource={dataSource} pagination={false}>
                     <Column title='代币名称' dataIndex='name' key='name' />
-                    <Column title='代币价格' dataIndex='price' key='price' />
+                    <Column 
+                        title='代币价格' 
+                        dataIndex='price' 
+                        key='price' 
+                        render={(text, record) => (
+                            <EditableCell
+                                value={text}
+                                onChange={this.onCellChange(record.name, 'price')}
+                            />
+                        )}
+                    />
                     <Column title='代币数量' dataIndex='count' key='count' />
                     <Column title='代币价值' dataIndex='totalPrice' key='totalPrice' />
                     <Column
@@ -70,6 +90,9 @@ const mapStateToDispatch = (dispatch) => {
         },
         onDelete: (name) => {
             dispatch(removeToken(name));
+        },
+        onCellChange: (name, price) => {
+            dispatch(changePrice(name, price))
         }
     }
 }

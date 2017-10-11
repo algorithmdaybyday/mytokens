@@ -11,13 +11,15 @@ export const fetchTokenRequest = () => {
 };
 
 export const fetchTokenSuccess = (result, count) => {
+    const price = result.price || 0;
     return {
         type: FETCH_TOKEN_SUCCESS,
         data: {
             name: result.symbol,
-            price: result.price,
+            price: price,
             count: count,
-            totalPrice: result.price * count
+            totalPrice: price * count,
+            editable: false
         }
     }
 
@@ -42,7 +44,8 @@ export const fetchToken = (tokenName, count) => {
                 throw new Error("Fail to get response with status " + response.status);
             }
             response.json().then((responseJson) => {
-                dispatch(fetchTokenSuccess(responseJson.data[0], count));
+                const data = responseJson.data[0];
+                dispatch(fetchTokenSuccess(data, count));
             }).catch((error) => {
                 // throw new Error('Invalid json response:' + error);
             });

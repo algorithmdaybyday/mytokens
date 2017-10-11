@@ -6,3 +6,13 @@ export const removeToken = (name) => {
         data: name
     }
 }
+
+export const changePrice = (name, price) => {
+		return {
+				type: ActionTypes.CHANGE_PRICE,
+				data: {
+						name: name,
+						price: price
+				}
+		}
+}
