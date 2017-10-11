@@ -13,5 +13,6 @@ const store = createStore(
         persistState()
     )
 );
+
 export default store;
 
