@@ -2,20 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Table } from 'antd';
 
-const dataSource = [{
-    key: '1',
-    name: 'OMG',
-    price: 54,
-    count: 2060,
-    totalPrice: 2312
-}, {
-    key: '2',
-    name: 'PAY',
-    price: 32,
-    count: 2060,
-    totalPrice: 2312
-}];
-
 const columns = [{
     title: '代币名称',
     dataIndex: 'name',
@@ -37,6 +23,8 @@ const columns = [{
 class TokensList extends Component {
 
     render() {
+        const { dataSource } = this.props;
+
         return (
             <div className='tokenList'>
                 <Table dataSource={dataSource} columns={columns} pagination={false} />
@@ -45,4 +33,10 @@ class TokensList extends Component {
     }
 };
 
-export default connect(null, null)(TokensList);
+const mapStateToProps = (state) => {
+    return {
+        dataSource: state.tokens
+    }
+}
+
+export default connect(mapStateToProps, null)(TokensList);
