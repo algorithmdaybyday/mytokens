@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import {
+    add_token
+} from '../actions';
 import { Form, Input, Button, Icon, Row, Col } from 'antd';
 
 const Item = Form.Item;
@@ -12,11 +16,12 @@ class AddForm extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.from.validateFields((err, values) => {
+        this.props.form.validateFields((err, values) => {
             if(!err) {
                 console.log('Received values of from', values);
+                this.props.onSubmit(values['name'], values['count']);
             }
-        })
+        });
     }
 
     render() {
@@ -61,4 +66,14 @@ class AddForm extends Component {
     }
 };
 
-export default Form.create()(AddForm);
+const mapStateToDispatch = (dispatch) => {
+    return {
+        onSubmit: (name, count) => {
+            dispatch(add_token(name, count));
+        }
+    }
+}
+
+const WrapperAddForm = Form.create()(AddForm);
+
+export default connect(null, mapStateToDispatch)(WrapperAddForm);
