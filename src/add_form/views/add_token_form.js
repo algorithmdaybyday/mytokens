@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Form, Input, Button, Icon, Row, Col } from 'antd';
-import { add_token } from '../actions';
+import { fetchToken } from '../actions';
 
 const Item = Form.Item;
 
@@ -66,7 +66,7 @@ class AddTokenForm extends Component {
 const mapStateToDispatch = (dispatch) => {
     return {
         onSubmit: (name, count) => {
-            dispatch(add_token(name, count));
+            dispatch(fetchToken(name, count));
         }
     }
 }

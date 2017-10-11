@@ -21,7 +21,7 @@ const sumOfTokens = (items) => {
     for(const item of items) {
         sum += item['totalPrice'];
     }
-    return sum;
+    return Math.floor(sum);
 }
 
 const mapStateToProps = (state) => {

@@ -1,10 +1,10 @@
 import {
-    ADD_TOKEN
+    FETCH_TOKEN_SUCCESS
 } from './action_types';
 
 export default (state = [], action) => {
     switch(action.type) {
-        case ADD_TOKEN: {
+        case FETCH_TOKEN_SUCCESS: {
             return [...state, action.data];
         }
         default: {
