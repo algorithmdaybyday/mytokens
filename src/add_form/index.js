@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import reducer from './reducer';
+
 import {
     add_token
 } from '../actions';

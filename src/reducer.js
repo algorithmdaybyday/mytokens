@@ -1,20 +1,7 @@
-import {
-    ADD_TOKEN
-} from './action_types';
+import { combineReducers } from 'redux';
+import tokens from './add_form/reducer';
 
-export default (state, action) => {
-    switch(action.type) {
-        case ADD_TOKEN: {
-            return {
-                ...state,
-                tokens: [
-                    ...state['tokens'],
-                    action.data
-                ]
-            }
-        }
-        default: {
-            return state;
-        }
-    }
-}
+
+export default combineReducers({
+    tokens: tokens
+})
