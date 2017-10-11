@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Row, Col } from 'antd';
 
 import './App.css';
-import AddForm from "./add_form/index";
+import { view as AddForm } from "./add_form";
 import Display from './display';
 import TokensList from "./list/index";
 

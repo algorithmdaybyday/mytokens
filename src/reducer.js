@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import tokens from './add_form/reducer';
+import { reducer as tokens } from './add_form';
 
 
 export default combineReducers({
