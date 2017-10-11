@@ -1,7 +1,13 @@
 .display {
     margin: 10px auto 30px;
+    padding: 20px;
 }
 
 .display h1 {
-    font-size: 100px;
+    font-size: 145px;
+}
+
+.display h1 span {
+    font-size: 14px;
+    font-style: normal;
 }

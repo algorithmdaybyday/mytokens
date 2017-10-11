@@ -19,7 +19,6 @@ class App extends Component {
                 message="说明"
                 description="数据保存在您的设备上，除了您自己，任何人无法得知您的加密货币资产状况。"
                 type="info"
-                // showIcon
                 closable
             />
             <AddForm/>

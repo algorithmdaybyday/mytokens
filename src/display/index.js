@@ -10,6 +10,9 @@ class Display extends Component {
             <div className='display'>
                 <h1>
                     {this.props.value}
+                    <span>
+                        CNY
+                    </span>
                 </h1>
             </div>
         )
