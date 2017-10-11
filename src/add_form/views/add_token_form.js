@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { Form, Input, Button, Icon, Row, Col } from 'antd';
 import { fetchToken } from '../actions';
 
+import './index.css';
+
 const Item = Form.Item;
 
 class AddTokenForm extends Component {
