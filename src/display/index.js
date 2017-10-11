@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import './index.css';
 
@@ -8,11 +9,25 @@ class Display extends Component {
         return (
             <div className='display'>
                 <h1>
-                    20003
+                    {this.props.value}
                 </h1>
             </div>
         )
     }
 };
 
-export default Display;
+const sumOfTokens = (items) => {
+    let sum = 0;
+    for(const item of items) {
+        sum += item['totalPrice'];
+    }
+    return sum;
+}
+
+const mapStateToProps = (state) => {
+    return {
+        value: sumOfTokens(state['tokens'])
+    }
+}
+
+export default connect(mapStateToProps)(Display);
