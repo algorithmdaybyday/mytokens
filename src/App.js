@@ -1,13 +1,22 @@
 import React, { Component } from 'react';
-import './App.css';
+import { Row, Col } from 'antd';
 
-import { Button } from 'antd';
+import './App.css';
+import AddForm from "./add_form/index";
+import Display from './display';
+import TokensList from "./list/index";
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <Button type="primary">Button</Button>
+        <Row type="flex" justify="center">
+          <Col span={12}>
+            <AddForm/>
+            <Display/>
+            <TokensList/>
+          </Col>
+        </Row>
       </div>
     );
   }
