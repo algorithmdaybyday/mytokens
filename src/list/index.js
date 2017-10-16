@@ -21,6 +21,7 @@ class TokensList extends Component {
 
     componentDidMount() {
         clearInterval(this.timer);
+        this.tick();
         this.timer = setInterval(() => {
             this.tick();
         }, 30000);
