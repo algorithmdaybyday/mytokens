@@ -35,16 +35,19 @@ export const fetchTokenFailure = (error) => {
 
 export const fetchToken = (tokenName, count) => {
     return (dispatch) => {
-        const url = 'https://block.cc/api/query?str=';
+        const url = 'https://block.cc/api/v1/query?str=';
 
         dispatch(fetchTokenRequest());
 
-        fetch(url + tokenName).then((response) => {
+        fetch(url + tokenName.toLowerCase() + '&act=q').then((response) => {
             if(response.status !== 200) {
                 throw new Error("Fail to get response with status " + response.status);
             }
             response.json().then((responseJson) => {
-                const data = responseJson.data[1];
+                let data = responseJson.data[0];
+                if(responseJson.length > 2) {
+                     data = responseJson.data[1];
+                }
                 dispatch(fetchTokenSuccess(data, count));
             }).catch((error) => {
                 // throw new Error('Invalid json response:' + error);
