@@ -44,7 +44,7 @@ export const fetchToken = (tokenName, count) => {
                 throw new Error("Fail to get response with status " + response.status);
             }
             response.json().then((responseJson) => {
-                const data = responseJson.data[0];
+                const data = responseJson.data[1];
                 dispatch(fetchTokenSuccess(data, count));
             }).catch((error) => {
                 // throw new Error('Invalid json response:' + error);
