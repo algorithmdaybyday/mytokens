@@ -39,6 +39,11 @@ export const fetchToken = (tokenName, count) => {
 
         dispatch(fetchTokenRequest());
 
+        if(tokenName === undefined) {
+            return
+        }
+
+        console.log(tokenName)
         fetch(url + tokenName.toLowerCase() + '&act=q').then((response) => {
             if(response.status !== 200) {
                 throw new Error("Fail to get response with status " + response.status);
@@ -52,9 +57,27 @@ export const fetchToken = (tokenName, count) => {
                 dispatch(fetchTokenSuccess(data, count));
             }).catch((error) => {
                 // throw new Error('Invalid json response:' + error);
+                let data = {
+                    symbol: tokenName,
+                    name: tokenName,
+                    price: 0,
+                    rate: 0,
+                }
+                if(tokenName !== undefined) {
+                    dispatch(fetchTokenSuccess(data, count));
+                }
             });
         }).catch((error) => {
-            dispatch(fetchTokenFailure(error));
+            // dispatch(fetchTokenFailure(error));
+            let data = {
+                symbol: tokenName,
+                name: tokenName,
+                price: 0,
+                rate: 0,
+            }
+            if(tokenName !== undefined) {
+                dispatch(fetchTokenSuccess(data, count));
+            }
         });
     }
 }
