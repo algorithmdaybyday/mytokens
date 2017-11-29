@@ -25,7 +25,7 @@ export default (state = [], action) => {
             if(used) {
                 return newState;
             } else {
-                return [...state, action.data];
+                return [action.data, ...state];
             }
 
         }
