@@ -46,9 +46,9 @@ export const fetchToken = (tokenName, count) => {
             response.json().then((responseJson) => {
                 let responseData = responseJson.data.data;
                 let data = responseData[0];
-                if(responseData.length > 2) {
-                     data = responseData[1];
-                }
+                // if(responseData.length > 2) {
+                //      data = responseData[1];
+                // }
                 dispatch(fetchTokenSuccess(data, count));
             }).catch((error) => {
                 // throw new Error('Invalid json response:' + error);
