@@ -11,7 +11,7 @@ export const fetchTokenRequest = () => {
 };
 
 export const fetchTokenSuccess = (result, count) => {
-    const price = (result.price * result.rate) || 0;
+    const price = (result.price * 6.6666) || 0;
     return {
         type: FETCH_TOKEN_SUCCESS,
         data: {
