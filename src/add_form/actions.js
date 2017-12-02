@@ -49,8 +49,11 @@ export const fetchToken = (tokenName, count) => {
                 throw new Error("Fail to get response with status " + response.status);
             }
             response.json().then((responseJson) => {
-                let responseData = responseJson.data.data;
-                let data = responseData[0];
+                let responseData = responseJson.data.data
+                let data = responseData[0]
+                if(data.symbol !== tokenName) {
+                    data = responseData[1]
+                }
                 // if(responseData.length > 2) {
                 //      data = responseData[1];
                 // }
